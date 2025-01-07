@@ -7,7 +7,7 @@ import java.util.Vector;
 
 public class GobangGame extends JPanel {
     private int boardSize; // 棋盘大小
-    private static final int CELL_SIZE = 40;
+    static final int CELL_SIZE = 40;
     private int[][] board; // 0: 空, 1: 黑子, 2: 白子
     private int currentPlayer = 1; // 1 = 黑子, 2 = 白子
     private Stack<Move> moveHistory = new Stack<>();
@@ -262,12 +262,16 @@ public class GobangGame extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        int width = getWidth();
+        int height = getHeight();
 
+        // 绘制棋盘网格
         for (int i = 0; i < boardSize; i++) {
-            g.drawLine(i * CELL_SIZE, 0, i * CELL_SIZE, boardSize * CELL_SIZE);
-            g.drawLine(0, i * CELL_SIZE, boardSize * CELL_SIZE, i * CELL_SIZE);
+            g.drawLine(i * CELL_SIZE, 0, i * CELL_SIZE, height); // 垂直线
+            g.drawLine(0, i * CELL_SIZE, width, i * CELL_SIZE); // 水平线
         }
 
+        // 绘制棋子
         for (int i = 0; i < boardSize; i++) {
             for (int j = 0; j < boardSize; j++) {
                 if (board[i][j] == 1) {
@@ -280,6 +284,7 @@ public class GobangGame extends JPanel {
             }
         }
     }
+
 
     public void reset() {
         for (int i = 0; i < boardSize; i++) {

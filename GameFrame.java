@@ -96,6 +96,10 @@ public class GameFrame extends JFrame {
         game = new GobangGame(boardSize);
         game.setVsAI(isVsAI);
 
+        // 设置窗口大小为棋盘大小
+        setSize(boardSize * GobangGame.CELL_SIZE + 16, boardSize * GobangGame.CELL_SIZE + 39);
+        setLocationRelativeTo(null); // 窗口居中显示
+
         // 游戏控制面板
         JPanel gameControlPanel = new JPanel();
         JButton resetButton = new JButton("重新开始");
